@@ -1,220 +1,457 @@
-# AI-Based Road Debris and Garbage Detection System
+# CB-AI Frontend
 
-## Overview
+Modern React TypeScript web application for debris and garbage detection. Provides an intuitive interface for uploading images/videos and analyzing live streams with real-time AI detection results.
 
-This project implements an AI-powered deep learning solution to detect debris, garbage, and construction materials that are temporarily or permanently placed on roads in India. The system aims to improve road safety and assist local authorities in maintaining clean and safe roadways in rural and semi-urban areas.
+## About
 
-## Problem Statement
+The frontend provides a user-friendly interface for interacting with the CB-AI detection system. Built with React 18 and TypeScript, it features a responsive design with dark/light theme support, drag-and-drop uploads, and real-time processing feedback.
 
-In India, it's common for construction materials such as bricks, sand, soil, and stones to be temporarily stored on roadsides during building or wall construction projects. Additionally, bulk garbage is often disposed of or stored along roadways for extended periods. These obstructions:
+Key features:
+- Image and video upload with drag-and-drop
+- Live stream detection interface
+- Real-time processing status and statistics
+- Dark/light theme toggle
+- Responsive design for all devices
+- Download processed media
+- Material-UI components
+- TypeScript for type safety
 
-- Create safety hazards and increase accident risks
-- Make it difficult for pedestrians and vehicles to navigate roads
-- Contribute to urban and rural cleanliness issues
-- Require timely intervention from local authorities
+## Built With
 
-## Solution
+- React 18.3.1
+- TypeScript 5.5.3
+- Vite 5.4.2
+- React Router DOM 7.6.2
+- Material-UI (MUI) 7.2.0
+- Emotion (styled components)
+- Tailwind CSS 3.4.1
+- Lucide React 0.344.0
+- PostCSS 8.4.35
+- Autoprefixer 10.4.18
 
-Our AI-based detection system uses computer vision and deep learning to:
+## Getting Started
 
-1. **Automatically detect** debris, garbage, and construction materials on roads
-2. **Classify** different types of obstructions (construction debris, garbage, etc.)
-3. **Alert** local police and municipal authorities in rural/semi-urban areas
-4. **Enable rapid response** for cleanup operations
-
-## Technical Approach
-
-### Dataset
-- **Custom Dataset**: Self-collected images of road debris and garbage
-- **Image Sources**: Real-world photographs taken across various Indian road conditions
-- **Coverage**: Urban, semi-urban, and rural road scenarios
-- **Diversity**: Different lighting conditions, weather, and debris types
-
-### Annotation
-- **Platform**: Roboflow for image annotation and dataset management
-- **Annotation Type**: Bounding box detection for debris and garbage objects
-- **Classes**: 
-  - Construction debris (bricks, sand, stones)
-  - Bulk garbage
-  - Mixed waste materials
-
-### Model Architecture
-- **Framework**: Deep Learning-based object detection
-- **Approach**: Computer vision for real-time detection
-- **Output**: Bounding box coordinates and confidence scores
-
-## Features
-
-- ✅ Real-time debris and garbage detection
-- ✅ Multi-class object detection (construction materials, garbage)
-- ✅ Custom dataset trained on Indian road conditions
-- ✅ Integration capability with alert systems
-- ✅ Scalable for rural and semi-urban deployment
-
-## Installation
+### Prerequisites
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/debris-detection-system.git
-cd debris-detection-system
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Download trained model weights
-python download_model.py
+node --version  # v18 or higher
+npm --version   # v9 or higher
 ```
+
+### Installation
+
+1. Navigate to the frontend directory
+   ```bash
+   cd cb-ai/frontend
+   ```
+
+2. Install dependencies
+   ```bash
+   npm install
+   ```
+
+3. Configure backend API URL (if needed)
+   
+   Update API endpoints in component files if backend is not running on `http://localhost:5000`
+
+4. Start the development server
+   ```bash
+   npm run dev
+   ```
+
+   Application will be available at `http://localhost:5173`
+
+5. Build for production (optional)
+   ```bash
+   npm run build
+   ```
+
+   Production build will be in the `dist/` directory.
 
 ## Usage
 
-### Basic Detection
-```python
-from debris_detector import DebrisDetector
+### Development Server
 
-# Initialize detector
-detector = DebrisDetector('path/to/model/weights')
-
-# Detect debris in image
-results = detector.detect('path/to/image.jpg')
-
-# Display results
-detector.visualize_results(results)
-```
-
-### Batch Processing
-```python
-# Process multiple images
-detector.process_directory('path/to/images/', output_dir='results/')
-```
-
-## Dataset Structure
-
-```
-dataset/
-├── images/
-│   ├── train/
-│   ├── validation/
-│   └── test/
-├── annotations/
-│   ├── train/
-│   ├── validation/
-│   └── test/
-└── roboflow_config.yaml
-```
-
-## Model Performance
-
-| Metric | Value |
-|--------|-------|
-| mAP@0.5 | XX.X% |
-| mAP@0.5:0.95 | XX.X% |
-| Precision | XX.X% |
-| Recall | XX.X% |
-| Inference Time | XX ms |
-
-## Integration with Alert Systems
-
-The system can be integrated with:
-- **SMS alerts** to local police stations
-- **Mobile applications** for municipal authorities
-- **Web dashboards** for monitoring and response
-- **IoT devices** for automated detection
-
-## Deployment
-
-### Local Deployment
 ```bash
-python app.py --model path/to/model --port 8000
+npm run dev
+# Server starts at http://localhost:5173
+# Hot Module Replacement (HMR) enabled
 ```
 
-### Cloud Deployment
-- Docker containerization supported
-- Compatible with AWS, GCP, Azure
-- Scalable inference endpoints
+### Building for Production
 
-## Contributing
+```bash
+npm run build
+# Output: dist/
+# Optimized and minified build ready for deployment
+```
 
-We welcome contributions to improve the system:
+### Preview Production Build
 
-1. **Data Collection**: Submit more diverse images of road debris
-2. **Model Improvement**: Enhance detection accuracy
-3. **Feature Addition**: Add new functionalities
-4. **Testing**: Test in different geographical locations
+```bash
+npm run preview
+# Preview production build locally before deployment
+```
 
-### How to Contribute
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/improvement`)
-3. Commit changes (`git commit -am 'Add new feature'`)
-4. Push to branch (`git push origin feature/improvement`)
-5. Create Pull Request
+### Code Quality
 
-## Dataset Guidelines
+```bash
+npm run lint
+# Run ESLint to check code quality and style
+```
 
-When contributing images:
-- Ensure clear visibility of debris/garbage
-- Include various lighting conditions
-- Capture different types of construction materials
-- Maintain privacy (avoid personal information in images)
-- Follow ethical data collection practices
+## Features
 
-## Future Enhancements
+### Upload Page (`/`)
+- Upload images (JPG, JPEG, PNG)
+- Upload videos (MP4, AVI, MOV)
+- Drag-and-drop file upload
+- Preview uploaded media
+- View annotated results with bounding boxes
+- Download processed images/videos
+- Detection statistics display
+- Progress indicators during processing
 
-- [ ] Mobile app for field workers
-- [ ] Real-time video stream processing
-- [ ] Integration with GPS for location tracking
-- [ ] Multi-language alert system
-- [ ] Historical data analysis and reporting
-- [ ] Edge device deployment for remote areas
+### Live Detection Page (`/live`)
+- Connect to RTSP/HTTP streams
+- Webcam integration support
+- Real-time detection statistics
+- Stream status monitoring
+- Connection management
 
-## Social Impact
+### UI/UX Features
+- Dark/light theme toggle
+- Responsive navigation
+- Loading animations
+- Error handling with user feedback
+- Smooth transitions
+- Accessible components
+- Mobile-optimized layouts
 
-This project aims to:
-- **Improve road safety** by reducing accident-causing obstructions
-- **Enhance urban cleanliness** through timely debris removal
-- **Support local authorities** with automated monitoring
-- **Promote civic responsibility** through technology-driven solutions
+## Project Structure
 
-## Technical Requirements
+```
+frontend/
+├── src/
+│   ├── components/
+│   │   ├── Navbar.tsx          # Navigation bar with theme toggle
+│   │   └── Loader.tsx          # Loading spinner component
+│   ├── pages/
+│   │   ├── UploadPage.tsx      # Image/video upload and processing
+│   │   └── LiveDetectionPage.tsx  # Live stream detection
+│   ├── assets/                 # Static assets (images, icons)
+│   ├── App.tsx                 # Main application component with routing
+│   ├── main.tsx                # Application entry point
+│   ├── index.css               # Global styles and Tailwind imports
+│   └── vite-env.d.ts           # Vite type definitions
+├── public/                     # Static public assets
+├── package.json                # Dependencies and scripts
+├── vite.config.ts              # Vite configuration
+├── tsconfig.json               # TypeScript configuration
+├── tsconfig.app.json           # App-specific TypeScript config
+├── tsconfig.node.json          # Node-specific TypeScript config
+├── tailwind.config.js          # Tailwind CSS configuration
+├── postcss.config.js           # PostCSS configuration
+├── eslint.config.js            # ESLint configuration
+├── index.html                  # HTML template
+└── README.md                   # This file
+```
 
-- Python 3.8+
-- OpenCV 4.5+
-- PyTorch/TensorFlow 2.x
-- Roboflow Python package
-- GPU recommended for training and inference
+## Components
 
-## License
+### Navbar
+Navigation component with:
+- Home link (Upload page)
+- Live Detection link
+- Dark/light theme toggle
+- Responsive mobile menu
+- Smooth transitions
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+### Loader
+Reusable loading indicator:
+- Animated spinner
+- Centered display
+- Theme-aware styling
+- Used during processing states
 
-## Acknowledgments
+### UploadPage
+Main upload interface:
+- File selection (click or drag-and-drop)
+- File type validation
+- Upload progress tracking
+- Result display with annotations
+- Download functionality
+- Detection statistics
 
-- **Roboflow** for annotation platform and dataset management
-- **Local communities** for supporting data collection efforts
-- **Municipal authorities** for collaboration and feedback
-- **Open source community** for tools and libraries
+### LiveDetectionPage
+Live stream interface:
+- Stream URL input
+- Connection management
+- Real-time detection stats
+- Status indicators
+- Error handling
 
-## Contact
+## API Integration
 
-For questions, suggestions, or collaboration opportunities:
+### Backend Endpoints
 
-- **Email**: [your-email@domain.com]
-- **GitHub Issues**: [Project Issues Page]
-- **Documentation**: [Project Wiki]
+```typescript
+// Image upload
+POST http://localhost:5000/upload/image
+Content-Type: multipart/form-data
 
-## Citation
+// Video upload
+POST http://localhost:5000/upload/video
+Content-Type: multipart/form-data
 
-If you use this work in your research or project, please cite:
+// Live stream
+POST http://localhost:5000/stream/live
+Content-Type: application/x-www-form-urlencoded
 
-```bibtex
-@misc{debris_detection_2025,
-  title={AI-Based Road Debris and Garbage Detection System for Indian Roads},
-  author={Your Name},
-  year={2025},
-  publisher={GitHub},
-  url={https://github.com/yourusername/debris-detection-system}
+// Get processed media
+GET http://localhost:5000/get_image/<filename>
+GET http://localhost:5000/get_video/<filename>
+
+// Download media
+GET http://localhost:5000/download_image/<filename>
+GET http://localhost:5000/download_video/<filename>
+```
+
+### Example API Call
+
+```typescript
+// Image upload example
+const handleUpload = async (file: File) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  
+  const response = await fetch('http://localhost:5000/upload/image', {
+    method: 'POST',
+    body: formData,
+  });
+  
+  const data = await response.json();
+  // Handle response
+};
+```
+
+## Styling
+
+### Tailwind CSS
+Custom configuration with:
+- Dark mode support
+- Custom color palette
+- Responsive breakpoints
+- Utility classes
+
+### Theme Implementation
+```typescript
+// App.tsx
+const [theme, setTheme] = useState('light');
+
+useEffect(() => {
+  document.documentElement.classList.toggle('dark', theme === 'dark');
+}, [theme]);
+```
+
+### Dark Mode Classes
+```tsx
+// Example usage
+<div className="bg-white dark:bg-black text-black dark:text-white">
+  Content
+</div>
+```
+
+## Configuration Files
+
+### vite.config.ts
+```typescript
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 5173,
+    open: true
+  }
+})
+```
+
+### tailwind.config.js
+```javascript
+module.exports = {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
+  theme: {
+    extend: {
+      // Custom theme extensions
+    }
+  },
+  plugins: []
 }
 ```
 
----
+### tsconfig.json
+TypeScript configuration with strict mode enabled for type safety.
 
-**Note**: This project is developed with the intention of serving society and improving road safety conditions in India. We encourage responsible use and welcome community participation in making roads safer for everyone.
+## Available Scripts
+
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run preview      # Preview production build
+npm run lint         # Run ESLint
+```
+
+## Development Guidelines
+
+### Code Style
+- Use functional components with hooks
+- Follow React best practices
+- Use TypeScript interfaces for props
+- Keep components under 300 lines
+- Use meaningful variable names
+- Add comments for complex logic
+
+### TypeScript
+```typescript
+// Define props interface
+interface UploadPageProps {
+  onUploadComplete?: (result: DetectionResult) => void;
+}
+
+// Use interface in component
+const UploadPage: React.FC<UploadPageProps> = ({ onUploadComplete }) => {
+  // Component logic
+};
+```
+
+### State Management
+```typescript
+// Use useState for local state
+const [file, setFile] = useState<File | null>(null);
+const [loading, setLoading] = useState(false);
+
+// Use refs for DOM access
+const fileInputRef = useRef<HTMLInputElement>(null);
+```
+
+### Error Handling
+```typescript
+try {
+  const response = await fetch(endpoint);
+  if (!response.ok) throw new Error('Upload failed');
+  const data = await response.json();
+  // Handle success
+} catch (error) {
+  console.error(error);
+  alert('Error: ' + error.message);
+}
+```
+
+## Deployment
+
+### Build for Production
+```bash
+npm run build
+# Output: dist/ directory
+```
+
+### Deploy to Static Hosting
+```bash
+# Deploy dist/ folder to:
+# - Vercel
+# - Netlify
+# - GitHub Pages
+# - AWS S3
+# - Any static hosting service
+```
+
+### Environment Variables
+Create `.env` file for environment-specific configuration:
+```env
+VITE_API_URL=http://localhost:5000
+VITE_APP_NAME=CB-AI
+```
+
+Access in code:
+```typescript
+const apiUrl = import.meta.env.VITE_API_URL;
+```
+
+## Browser Compatibility
+
+Supports modern browsers:
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## Performance Optimization
+
+- Code splitting with React.lazy()
+- Image optimization
+- Lazy loading for heavy components
+- Memoization with useMemo/useCallback
+- Virtual scrolling for large lists (if needed)
+
+## Troubleshooting
+
+**Issue: CORS errors**
+- Solution: Ensure backend has CORS enabled and is running
+
+**Issue: File upload fails**
+- Solution: Check file size limits and format compatibility
+
+**Issue: Build errors**
+- Solution: Clear node_modules and reinstall dependencies
+  ```bash
+  rm -rf node_modules package-lock.json
+  npm install
+  ```
+
+**Issue: Type errors**
+- Solution: Update TypeScript definitions
+  ```bash
+  npm install --save-dev @types/react @types/react-dom
+  ```
+
+## Roadmap
+
+- [ ] User authentication and authorization
+- [ ] Detection history dashboard
+- [ ] Real-time webcam detection in browser
+- [ ] Batch file upload
+- [ ] Advanced filtering and sorting
+- [ ] Export detection data (CSV/JSON)
+- [ ] Video trimming and editing
+- [ ] Annotation tools
+- [ ] Mobile application
+
+## Contributing
+
+Follow the main project contributing guidelines. For frontend-specific contributions:
+
+1. Follow TypeScript strict mode
+2. Use functional components
+3. Write meaningful commit messages
+4. Test thoroughly before PR
+5. Update documentation
+
+## License
+
+This project is available for use under standard open-source practices.
+
+## Contact
+
+For frontend-specific issues, refer to the main project repository.
+
+## Acknowledgments
+
+- [React](https://react.dev/) - UI library
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
+- [Vite](https://vitejs.dev/) - Build tool
+- [Material-UI](https://mui.com/) - Component library
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [Lucide](https://lucide.dev/) - Icon library
