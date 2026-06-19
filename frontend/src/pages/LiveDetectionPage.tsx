@@ -2,6 +2,8 @@ import { useState, useRef } from 'react';
 import { Camera, Play, Link, Download, AlertCircle, Wifi, Radio } from 'lucide-react';
 import Loader from '../components/Loader';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const LiveDetectionPage = () => {
   const [loading, setLoading] = useState(false);
   const [outputUrl, setOutputUrl] = useState<string>('');
@@ -16,13 +18,13 @@ const LiveDetectionPage = () => {
       const formData = new FormData();
       formData.append('url', url);
 
-      const res = await fetch('http://localhost:5000/stream/live', {
+      const res = await fetch(`${API_URL}/stream/live`, {
         method: 'POST',
         body: formData,
       });
 
       const data = await res.json();
-      setOutputUrl(`http://localhost:5000/get_video/${data.filename}`);
+      setOutputUrl(`${API_URL}/get_video/${data.filename}`);
     } catch (err) {
       alert("Live stream processing failed");
       console.error(err);
@@ -106,17 +108,17 @@ const LiveDetectionPage = () => {
               <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
               <h2 className="text-2xl font-bold text-black dark:text-white">Live Stream Active</h2>
             </div>
-            
+
             <div className="space-y-6">
               <div className="bg-black/30 dark:bg-white/10 rounded-xl p-4">
-                <video 
-                  src={outputUrl} 
-                  controls 
+                <video
+                  src={outputUrl}
+                  controls
                   className="w-full rounded-lg"
                   style={{ maxHeight: '500px' }}
                 />
               </div>
-              
+
               <div className="flex justify-center">
                 <a
                   href={outputUrl}
@@ -142,7 +144,7 @@ const LiveDetectionPage = () => {
               Live stream analysis with immediate debris detection and alerts
             </p>
           </div>
-          
+
           <div className="bg-white dark:bg-gray-900 rounded-xl p-6 text-center border border-black/20 dark:border-white/20 transition-all duration-200 hover:border-black/40 dark:hover:border-white/40 hover:shadow-lg">
             <div className="w-12 h-12 bg-black/10 dark:bg-white/10 rounded-lg flex items-center justify-center mx-auto mb-4">
               <Wifi className="w-6 h-6 text-black dark:text-white" />
@@ -152,7 +154,7 @@ const LiveDetectionPage = () => {
               Supports RTSP, HTTP, and other streaming protocols for camera integration
             </p>
           </div>
-          
+
           <div className="bg-white dark:bg-gray-900 rounded-xl p-6 text-center border border-black/20 dark:border-white/20 transition-all duration-200 hover:border-black/40 dark:hover:border-white/40 hover:shadow-lg">
             <div className="w-12 h-12 bg-black/10 dark:bg-white/10 rounded-lg flex items-center justify-center mx-auto mb-4">
               <AlertCircle className="w-6 h-6 text-black dark:text-white" />
@@ -175,8 +177,8 @@ const LiveDetectionPage = () => {
               <span className="text-black dark:text-white">HTTP:</span> http://192.168.1.100:8080/video.mjpg
             </div>
           </div>
+        </div>
       </div>
-    </div>
     </div>
   );
 };

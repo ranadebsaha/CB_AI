@@ -3,24 +3,27 @@ from ultralytics import YOLO
 import os
 
 model = YOLO("best.pt")
-TARGET_CLASSES = ['Debris', 'Garbage']
+TARGET_CLASSES = ["Debris", "Garbage"]
 CONFIDENCE_THRESHOLD = 0.5
+
 
 def detect_from_frame(frame):
     results = model.predict(frame)
     detected = any(
-        model.names[int(box.cls[0])] in TARGET_CLASSES and float(box.conf[0]) >= CONFIDENCE_THRESHOLD
+        model.names[int(box.cls[0])] in TARGET_CLASSES
+        and float(box.conf[0]) >= CONFIDENCE_THRESHOLD
         for box in results[0].boxes
     )
     annotated = results[0].plot()
     return detected, annotated
+
 
 def process_image(image_path):
     frame = cv2.imread(image_path)
     detected, annotated = detect_from_frame(frame)
     output_path = image_path.replace(".jpg", "_detected.jpg")
     cv2.imwrite(output_path, annotated)
-    return {'detected': detected}, output_path
+    return {"detected": detected}, output_path
 
 
 def debris_detected(results):
@@ -33,13 +36,12 @@ def debris_detected(results):
     return False
 
 
-
 def process_video(video_path):
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
         raise FileNotFoundError("Could not open the input video")
 
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    fourcc = cv2.VideoWriter_fourcc(*"mp4v")
     fps = int(cap.get(cv2.CAP_PROP_FPS)) or 20
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
@@ -68,16 +70,16 @@ def process_video(video_path):
     out.release()
 
     return output_path, {
-        'total_frames': total_frames,
-        'detections': detections,
-        'status': 'done'
+        "total_frames": total_frames,
+        "detections": detections,
+        "status": "done",
     }
 
 
 def process_live_stream(stream_url):
     cap = cv2.VideoCapture(stream_url)
     if not cap.isOpened():
-        return {'error': 'Stream not accessible'}
+        return {"error": "Stream not accessible"}
 
     detected_frames = 0
     frame_count = 0
@@ -92,7 +94,7 @@ def process_live_stream(stream_url):
 
     cap.release()
     return {
-        'total_frames': frame_count,
-        'detections': detected_frames,
-        'status': 'stream complete'
+        "total_frames": frame_count,
+        "detections": detected_frames,
+        "status": "stream complete",
     }

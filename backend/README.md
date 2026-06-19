@@ -1,3 +1,14 @@
+---
+title: Cb Ai Backend
+emoji: 🐢
+colorFrom: blue
+colorTo: green
+sdk: docker
+app_port: 7860
+pinned: false
+license: mit
+---
+
 # CB-AI Backend
 
 Flask-based REST API backend for debris and garbage detection using YOLOv11. Provides endpoints for image processing, video analysis, and live stream detection with OpenCV and PyTorch.
@@ -70,7 +81,7 @@ pip --version     # Latest version
    python app.py
    ```
 
-   Server will start at `http://localhost:5000`
+   Server will start at `http://localhost:7860`
 
 ## Usage
 
@@ -80,7 +91,7 @@ pip --version     # Latest version
 # Development mode with auto-reload
 python app.py
 
-# The server runs on http://localhost:5000
+# The server runs on http://localhost:7860
 # Debug mode is enabled by default in app.py
 ```
 
@@ -168,16 +179,16 @@ Returns: Video file as attachment
 
 ```bash
 # Test image upload with curl
-curl -X POST -F "file=@test_image.jpg" http://localhost:5000/upload/image
+curl -X POST -F "file=@test_image.jpg" http://localhost:7860/upload/image
 
 # Test video upload
-curl -X POST -F "file=@test_video.mp4" http://localhost:5000/upload/video
+curl -X POST -F "file=@test_video.mp4" http://localhost:7860/upload/video
 
 # Test live stream (webcam)
-curl -X POST -d "url=0" http://localhost:5000/stream/live
+curl -X POST -d "url=0" http://localhost:7860/stream/live
 
 # Test live stream (RTSP)
-curl -X POST -d "url=rtsp://camera.example.com/stream" http://localhost:5000/stream/live
+curl -X POST -d "url=rtsp://camera.example.com/stream" http://localhost:7860/stream/live
 ```
 
 ## Project Structure

@@ -45,7 +45,7 @@ Instructions on setting up the project locally.
    python app.py
    ```
 
-   Backend runs at `http://localhost:5000`.
+   Backend runs at `http://localhost:7860`.
 
 3. Frontend setup
 
@@ -62,7 +62,7 @@ Instructions on setting up the project locally.
 ### Upload Image
 
 ```bash
-curl -X POST -F "file=@sample.jpg" http://localhost:5000/upload/image
+curl -X POST -F "file=@sample.jpg" http://localhost:7860/upload/image
 ```
 
 Response:
@@ -74,7 +74,7 @@ Response:
 ### Upload Video
 
 ```bash
-curl -X POST -F "file=@sample.mp4" http://localhost:5000/upload/video
+curl -X POST -F "file=@sample.mp4" http://localhost:7860/upload/video
 ```
 
 Response:
@@ -89,7 +89,7 @@ Response:
 ### Live Stream
 
 ```bash
-curl -X POST -d "url=rtsp://your-stream-url" http://localhost:5000/stream/live
+curl -X POST -d "url=rtsp://your-stream-url" http://localhost:7860/stream/live
 ```
 
 Response:

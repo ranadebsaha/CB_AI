@@ -27,7 +27,7 @@ env/
 ENV/
 
 # Machine Learning models and weights
-*.pt
+# *.pt
 *.onnx
 *.weights
 
