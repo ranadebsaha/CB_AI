@@ -1,0 +1,36 @@
+# OS-generated files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+Ehthumbs.db
+
+# Logs
+Log.txt
+
+# Editor and IDE directories
+*.sublime-project
+*.sublime-workspace
+.vscode/
+.idea/
+
+# Python caching and testing
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Environments and virtual environments
+.env
+venv/
+env/
+ENV/
+
+# Machine Learning models and weights
+# *.pt
+*.onnx
+*.weights
+
+# Local application uploads and outputs
+static/uploads/
+static/results/
